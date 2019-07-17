@@ -12,8 +12,14 @@ const User = require('../../models/User');
 //@dest     Register User
 //@access   Public
 
+// =============================================================================
+// Register user
+// =============================================================================
 // 15.- Create route handlers
 router.post('/', [
+  // ===========================================================================
+  // Check parameters
+  // ===========================================================================
     // 23.- Configure check parameters
     check('name', 'name is required').not().isEmpty(),
     // 23.- Configure check parameters
@@ -22,10 +28,16 @@ router.post('/', [
     check('password', 'Please enter a password of 6 or more characters').isLength({ min: 6 })
   ],
   (req, res)=>{
+    // =========================================================================
+    // Request-Response handling
+    // =========================================================================
       // 24.- Use BodyParser (now included on Express natively) to get the body
       console.log(req.body);
       // 25.- Pass request through validator to check
       const errors = validationResult(req);
+      // =======================================================================
+      // Failure handling
+      // =======================================================================
       // 26.- Check wether the call was succesful or not
       if(!errors.isEmpty()){
         // 27.- In case there was a problem return a 400 status with the errors

@@ -1,10 +1,25 @@
-// 3.- database init
+// =============================================================================
+// Requirements
+// =============================================================================
+// 3.- database initialization
 const mongoose = require('mongoose');
 // 4.- require config module
 const config = require('config');
+// =============================================================================
+// Get information from external file
+// =============================================================================
 // 5.- get the mongoURI from default.json
 const db = config.get('mongoURI');
 
+// =============================================================================
+// NOT IN CLASS: Fix for deprecation warning collection.ensureindex
+// =============================================================================
+mongoose.set('useCreateIndex', true);
+
+
+// =============================================================================
+// Database connection
+// =============================================================================
 // 6.- Create an asyncronous function called connectDB
 const connectDB = async () => {
   // 7.- Attempt to connect to the database
